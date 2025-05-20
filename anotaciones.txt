@@ -1,0 +1,50 @@
+Nuestro sistema será una aplicación de un punto de venta, de caracter general, ya que podría servir para un almacen / despensa / kiosco.
+Con este sistema podremos realizar la carga de un stock físico de artículos que tenemos para la venta.
+Podremos crear artículos, asignarles una marca, una categoría, y luego agregarlos al inventario a la venta, asignando la cantidad que tenemos actualmente.
+
+
+Movimientos que se pueden registrar:
+- Podremos registrar entrada de artículo (reabastecimiento)
+- Podremos registrar una venta ()
+- Podremos registrar un movimiento de artículo (como lo puede ser un recambio de artículos, o un registro de scrap)
+
+En base a todos los registros que se hayan generado con los movimientos anteriores, se pueden obtener reportes para obtener métricas de negocio por ejemplo:
+- Artículos que no hayan tenido ventas (y que por ende no sale rentable)
+- Recaudación del día / semana / mes
+- Reporte de stock actual.
+
+
+Objetos a representar:
+- Artículos 
+- Venta
+- Marcas
+- Stock
+
+-- Tablas
+
+Tabla Artículos:
+- IDartículo (int) (PK)
+- idMarca (int) (FK)
+- Nombre (nvarchar(100))
+- Especificaciones (nvarchar(200))
+
+Tabla Marcas:
+- IDMarca (int) (PK)
+- Nombre (nvarchar(100))
+
+Tabla Ventas:
+- IDVenta (int) (PK)
+- Fecha (datetime)
+- tipoFactura (char)
+- importeTotal (float)
+
+Tabla ArtículoVenta:
+- IDVenta (int) (FK)
+- IDartículo (int)
+- cantidad (int)
+- precio (float)
+
+Tabla stock:
+- IDArtículo (int)
+- Precio (float)
+- cantidad (int)

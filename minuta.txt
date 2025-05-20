@@ -1,0 +1,7 @@
+Minuta 20/05/2025:
+
+Fecha y hora de la reunión: 20/05/2025
+Participantes: Facundo y Leandro
+Temas tratados: Empezamos a pensar sobre cómo vamos a representar los objetos que va a administrar el sistema:
+Vemos qué tablas armar, y qué atributos pertenecen a cada tabla
+Decisiones tomadas: Plantamiento de la estructura a desarollar
