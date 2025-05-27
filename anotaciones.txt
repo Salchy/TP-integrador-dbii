@@ -39,8 +39,8 @@ Tabla Ventas:
 - importeTotal (float)
 
 Tabla ArtículoVenta:
-- IDVenta (int) (FK)
-- IDartículo (int)
+- IDVenta (int) (PK, FK)
+- IDartículo (int) (PK, FK)
 - cantidad (int)
 - precio (float)
 
