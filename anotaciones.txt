@@ -13,6 +13,10 @@ En base a todos los registros que se hayan generado con los movimientos anterior
 - Recaudación del día / semana / mes
 - Reporte de stock actual.
 
+Se necesitan crear:
+- 3 Vistas
+- 2 Procedimientos
+- 2 Triggers
 
 Objetos a representar:
 - Artículos 
