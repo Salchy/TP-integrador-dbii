@@ -1,4 +1,6 @@
-ALTER PROCEDURE SP_AgregarArticulo(
+-- Creación de procedimientos
+
+CREATE PROCEDURE SP_AgregarArticulo(
 		@nombreArticulo nvarchar(100),
 		@idMarca int,
 		@precioArticulo floaT
