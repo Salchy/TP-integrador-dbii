@@ -1,7 +1,21 @@
-Minuta 20/05/2025:
+Reunión 20/05/2025:
 
 Fecha y hora de la reunión: 20/05/2025
 Participantes: Facundo y Leandro
 Temas tratados: Empezamos a pensar sobre cómo vamos a representar los objetos que va a administrar el sistema:
 Vemos qué tablas armar, y qué atributos pertenecen a cada tabla
 Decisiones tomadas: Plantamiento de la estructura a desarollar
+
+Reunión 27/05/2025
+
+Fecha y hora de la reunión: 27/05/2025
+Participantes: Jesus y Leandro
+Temas tratados: Confirmamos el diagrama DER
+Decisiones tomadas:
+
+Reunión 09/06/2025
+
+Fecha y hora de la reunión: 09/06/2025
+Participantes: Jesus, Leandro y Facundo
+Temas tratados: Division de tareas, planteamiento de vistas, procedimientos y triggers que vamos a realizar.
+Decisiones tomadas: Establecemos las tareas a realizar cada uno, hablamos sobre el diagrama, planteamos la adición de un atributo 'descripción' a la base de datos, ya que no estaba realizada.
