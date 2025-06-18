@@ -1,36 +1,3 @@
--- Creación de procedimientos
-
-CREATE PROCEDURE SP_AgregarArticulo(
-		@nombreArticulo nvarchar(100),
-		@idMarca int,
-		@precioArticulo float
-	)
-AS
-	BEGIN TRANSACTION
-		BEGIN TRY
-			IF (@precioArticulo < 0) BEGIN
-				RAISERROR('No se puede insertar un precio de artículo negativo', 16, 1)
-			END
-			DECLARE @marcaID int
-			SET @marcaID = 0;
-
-			SELECT @marcaID = IDMarca FROM MARCAS WHERE IDMarca = @idMarca;
-
-			IF (@marcaID = 0) BEGIN
-				RAISERROR('Número de ID de marca no existe en la base de datos', 16, 1)
-			END
-			INSERT INTO Articulos (Nombre, IDMarca, Precio) VALUES (@nombreArticulo, @idMarca, @precioArticulo);
-
-			INSERT INTO Stock VALUES (@@IDENTITY, 0);
-			
-			COMMIT TRANSACTION;
-		END TRY
-		BEGIN CATCH
-			ROLLBACK TRANSACTION;
-			PRINT ERROR_MESSAGE();
-		END CATCH
-GO
-
 -- "Debería descontar el stock del producto que se vendió
 -- Es un insert a ArticuloVentas, pasandole por argumento, el ID de venta al que va asociado ese artículo
 -- Para hacerlo más sencillo, vamos a realizar un procedimiento, de registrar un ítem de venta, para una venta en cuestión
@@ -44,8 +11,9 @@ CREATE PROCEDURE SP_RegistrarVentaArticulo (
 )
 AS
 BEGIN
-	BEGIN TRANSACTION
-		BEGIN TRY
+	BEGIN TRY
+		BEGIN TRANSACTION
+		
 			-- Validación de idVenta
 			IF (@idVenta < 0) BEGIN
 				RAISERROR('No se puede insertar un id de venta negativo', 16, 1);
@@ -83,26 +51,10 @@ BEGIN
 			-- Registrar la venta del artículo para una venta en específico
 			INSERT INTO ArticulosVenta VALUES (@idVenta, @idArticulo, @cantidad, @precioUnitario);
 
-			COMMIT TRANSACTION;
-		END TRY
-		BEGIN CATCH
-			ROLLBACK TRANSACTION;
-			PRINT ERROR_MESSAGE();
-		END CATCH
-	END
-GO
-
-CREATE PROCEDURE SP_RegistrarVentaArticulo (
-	@idVenta INT,
-	@idArticulo INT,
-	@cantidad INT
-)
-
-EXEC SP_RegistrarVentaArticulo 4, 4, 4;
-
-SELECT * FROM Articulos;
-SELECT * FROM Stock;
-SELECT * FROM Ventas;
-
-
-INSERT INTO Ventas (ImporteTotal) VALUES (0);
+		COMMIT TRANSACTION;
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION;
+		PRINT ERROR_MESSAGE();
+	END CATCH
+END;

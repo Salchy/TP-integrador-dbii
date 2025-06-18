@@ -40,7 +40,7 @@ CREATE TABLE ArticulosVenta (
 GO
 
 CREATE TABLE Stock (
-	IDArticulo INT NOT NULL,
+	IDArticulo INT UNIQUE NOT NULL,
 	Cantidad INT NOT NULL DEFAULT 0,
 
 	FOREIGN KEY (IDArticulo) REFERENCES Articulos (IDArticulo)
