@@ -10,3 +10,9 @@ CREATE VIEW VW_MostrarInformacionVentas AS
 	FROM ArticulosVenta AS AV
 	INNER JOIN Articulos AS A ON AV.IDArticulo = A.IDArticulo
 	INNER JOIN Ventas AS V ON AV.IDVenta = V.IDVenta;
+	GO
+
+	CREATE VIEW Vista3_PromedioDeVentas AS
+SELECT AVG(ImporteTotal) AS PromedioImporteTotal
+FROM Ventas;
+GO
