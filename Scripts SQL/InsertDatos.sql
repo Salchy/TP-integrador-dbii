@@ -92,7 +92,7 @@ GO
 
 ----------------------------------------------------------------
 
--- Modificar el stock a mano, falta crear procedure para adicionar stock a un producto
+-- Modificar el stock manualmente, falta crear procedure para adicionar stock a un producto.
 
 UPDATE Stock SET Cantidad = 12 WHERE IDArticulo = 1;
 UPDATE Stock SET Cantidad = 3  WHERE IDArticulo = 2;
@@ -134,9 +134,10 @@ SELECT * FROM Stock;
 GO
 
 ----------------------------------------------------------------
-
+SET DATEFORMAT ymd;
 -- Dar de alta ventas
-INSERT INTO Ventas (Fecha, TipoFactura, ImporteTotal) VALUES -- Por defecto, el importeTotal, se establece a 0, se va modificando por triggers, cuando se inserta una venta de un artículo, para la venta ID
+-- Por defecto, el importeTotal, se establece a 0, se va modificando por triggers, cuando se inserta una venta de un artículo, para la venta ID
+INSERT INTO Ventas (Fecha, TipoFactura, ImporteTotal) VALUES 
 	('2025-06-09 18:20:15', 'A', 0),
 	('2025-06-10 08:30:00', NULL, 0),
 	('2025-06-11 13:56:49', 'B', 0),

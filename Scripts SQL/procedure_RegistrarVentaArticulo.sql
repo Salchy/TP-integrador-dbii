@@ -4,6 +4,8 @@
 -- A tener en cuenta: se deberá guardar el precio del artículo en el campo importeUnitario,para guardar el precio de esa venta, así poder modificar el precio luego de ese artículo, sin que influya en los reportes, ya que el precio de venta es otro.
 -- A demas, si la cantidad a comprar, es mayor a la del stock que hay disponible, arrojar error "
 
+-- USE TPIGrupo29; 
+
 CREATE PROCEDURE SP_RegistrarVentaArticulo (
 	@idVenta INT,
 	@idArticulo INT,
