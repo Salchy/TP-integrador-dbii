@@ -4,7 +4,7 @@
 -- "Debería mostrar todos los artículos que formaron parte de una venta
 -- Join entre Ventas, ArtículoVenta y Artículo para obtener el nombre del artículo"
 
---USE TPIGrupo29;
+-- USE TPIGrupo29;
 
 CREATE VIEW VW_MostrarInformacionVentas AS
 	SELECT
