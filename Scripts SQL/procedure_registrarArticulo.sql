@@ -1,5 +1,7 @@
 -- Agrega un artículo al inventario que ofrece el punto de venta, Y por defecto pone stock 0
 
+--USE TPIGrupo29;
+
 CREATE PROCEDURE SP_registrarArticulo(
 		@nombreArticulo nvarchar(100),
 		@idMarca int,
