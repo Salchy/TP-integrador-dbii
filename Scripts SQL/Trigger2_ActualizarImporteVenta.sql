@@ -1,13 +1,12 @@
 --MOdificar el importe de la venta al hacer un insert en la tabla de ArticuloVenta
---
+-- USE TPIGrupo29;
 CREATE TRIGGER trg_ActualizarImporteVenta
 ON ArticulosVenta
 AFTER INSERT
 AS
 BEGIN
     SET NOCOUNT ON;
-    
-  
+
     UPDATE V
     SET ImporteTotal = (
         SELECT SUM(AV.Cantidad * AV.PrecioUnitario)

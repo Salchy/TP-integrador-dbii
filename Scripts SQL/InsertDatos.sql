@@ -94,38 +94,79 @@ GO
 
 -- Modificar el stock manualmente, falta crear procedure para adicionar stock a un producto.
 
-UPDATE Stock SET Cantidad = 12 WHERE IDArticulo = 1;
-UPDATE Stock SET Cantidad = 3  WHERE IDArticulo = 2;
-UPDATE Stock SET Cantidad = 8  WHERE IDArticulo = 3;
-UPDATE Stock SET Cantidad = 1  WHERE IDArticulo = 4;
-UPDATE Stock SET Cantidad = 11 WHERE IDArticulo = 5;
-UPDATE Stock SET Cantidad = 7  WHERE IDArticulo = 6;
-UPDATE Stock SET Cantidad = 5  WHERE IDArticulo = 7;
-UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 8;
-UPDATE Stock SET Cantidad = 2  WHERE IDArticulo = 9;
-UPDATE Stock SET Cantidad = 13 WHERE IDArticulo = 10;
-UPDATE Stock SET Cantidad = 4  WHERE IDArticulo = 11;
-UPDATE Stock SET Cantidad = 6  WHERE IDArticulo = 12;
-UPDATE Stock SET Cantidad = 4  WHERE IDArticulo = 13;
-UPDATE Stock SET Cantidad = 14 WHERE IDArticulo = 14;
-UPDATE Stock SET Cantidad = 10 WHERE IDArticulo = 15;
-UPDATE Stock SET Cantidad = 1  WHERE IDArticulo = 16;
-UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 17;
-UPDATE Stock SET Cantidad = 12 WHERE IDArticulo = 18;
-UPDATE Stock SET Cantidad = 8  WHERE IDArticulo = 19;
-UPDATE Stock SET Cantidad = 6  WHERE IDArticulo = 20;
-UPDATE Stock SET Cantidad = 2  WHERE IDArticulo = 21;
-UPDATE Stock SET Cantidad = 10 WHERE IDArticulo = 22;
-UPDATE Stock SET Cantidad = 0  WHERE IDArticulo = 23;
-UPDATE Stock SET Cantidad = 13 WHERE IDArticulo = 24;
-UPDATE Stock SET Cantidad = 7  WHERE IDArticulo = 25;
-UPDATE Stock SET Cantidad = 3  WHERE IDArticulo = 26;
-UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 27;
-UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 28;
-UPDATE Stock SET Cantidad = 11 WHERE IDArticulo = 29;
-UPDATE Stock SET Cantidad = 5  WHERE IDArticulo = 30;
-UPDATE Stock SET Cantidad = 14 WHERE IDArticulo = 31;
+-- Versión sin procedimiento:
+--UPDATE Stock SET Cantidad = 12 WHERE IDArticulo = 1;
+--UPDATE Stock SET Cantidad = 3  WHERE IDArticulo = 2;
+--UPDATE Stock SET Cantidad = 8  WHERE IDArticulo = 3;
+--UPDATE Stock SET Cantidad = 1  WHERE IDArticulo = 4;
+--UPDATE Stock SET Cantidad = 11 WHERE IDArticulo = 5;
+--UPDATE Stock SET Cantidad = 7  WHERE IDArticulo = 6;
+--UPDATE Stock SET Cantidad = 5  WHERE IDArticulo = 7;
+--UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 8;
+--UPDATE Stock SET Cantidad = 2  WHERE IDArticulo = 9;
+--UPDATE Stock SET Cantidad = 13 WHERE IDArticulo = 10;
+--UPDATE Stock SET Cantidad = 4  WHERE IDArticulo = 11;
+--UPDATE Stock SET Cantidad = 6  WHERE IDArticulo = 12;
+--UPDATE Stock SET Cantidad = 4  WHERE IDArticulo = 13;
+--UPDATE Stock SET Cantidad = 14 WHERE IDArticulo = 14;
+--UPDATE Stock SET Cantidad = 10 WHERE IDArticulo = 15;
+--UPDATE Stock SET Cantidad = 1  WHERE IDArticulo = 16;
+--UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 17;
+--UPDATE Stock SET Cantidad = 12 WHERE IDArticulo = 18;
+--UPDATE Stock SET Cantidad = 8  WHERE IDArticulo = 19;
+--UPDATE Stock SET Cantidad = 6  WHERE IDArticulo = 20;
+--UPDATE Stock SET Cantidad = 2  WHERE IDArticulo = 21;
+--UPDATE Stock SET Cantidad = 10 WHERE IDArticulo = 22;
+--UPDATE Stock SET Cantidad = 0  WHERE IDArticulo = 23;
+--UPDATE Stock SET Cantidad = 13 WHERE IDArticulo = 24;
+--UPDATE Stock SET Cantidad = 7  WHERE IDArticulo = 25;
+--UPDATE Stock SET Cantidad = 3  WHERE IDArticulo = 26;
+--UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 27;
+--UPDATE Stock SET Cantidad = 9  WHERE IDArticulo = 28;
+--UPDATE Stock SET Cantidad = 11 WHERE IDArticulo = 29;
+--UPDATE Stock SET Cantidad = 5  WHERE IDArticulo = 30;
+--UPDATE Stock SET Cantidad = 14 WHERE IDArticulo = 31;
 GO
+
+-- Versión con Procedimiento:
+EXEC SP_ModificarStock 1, 12;
+EXEC SP_ModificarStock 2, 3;
+EXEC SP_ModificarStock 3, 8;
+EXEC SP_ModificarStock 4, 1;
+EXEC SP_ModificarStock 5, 11;
+EXEC SP_ModificarStock 6, 7;
+EXEC SP_ModificarStock 7, 5;
+EXEC SP_ModificarStock 8, 9;
+EXEC SP_ModificarStock 9, 2;
+EXEC SP_ModificarStock 10, 13;
+EXEC SP_ModificarStock 11, 4;
+EXEC SP_ModificarStock 12, 6;
+EXEC SP_ModificarStock 13, 4;
+EXEC SP_ModificarStock 14, 14;
+EXEC SP_ModificarStock 15, 10;
+EXEC SP_ModificarStock 16, 1;
+EXEC SP_ModificarStock 17, 9;
+EXEC SP_ModificarStock 18, 12;
+EXEC SP_ModificarStock 19, 8;
+EXEC SP_ModificarStock 20, 6;
+EXEC SP_ModificarStock 21, 2;
+EXEC SP_ModificarStock 22, 10;
+EXEC SP_ModificarStock 23, 0;
+EXEC SP_ModificarStock 24, 13;
+EXEC SP_ModificarStock 25, 7;
+EXEC SP_ModificarStock 26, 3;
+EXEC SP_ModificarStock 27, 9;
+EXEC SP_ModificarStock 28, 9;
+EXEC SP_ModificarStock 29, 11;
+EXEC SP_ModificarStock 30, 5;
+EXEC SP_ModificarStock 31, 14;
+
+----------------------------------------------------------------
+
+-- Comprobación de validaciones
+
+EXEC SP_ModificarStock 5000, 2; -- No realiza la modificación, porque el ID artículo no existe
+EXEC SP_ModificarStock 2, -20; -- No realiza la modificación, porque generaría un stock en negativo
 
 ----------------------------------------------------------------
 
@@ -137,6 +178,8 @@ GO
 SET DATEFORMAT ymd;
 -- Dar de alta ventas
 -- Por defecto, el importeTotal, se establece a 0, se va modificando por triggers, cuando se inserta una venta de un artículo, para la venta ID
+
+-- Versión sin procedimiento (Se usa en este caso, para registrar ventas pasadas, ya que el procedure sirve para recuperar el ID de venta ingresado para utilizarlo en el sistema)
 INSERT INTO Ventas (Fecha, TipoFactura, ImporteTotal) VALUES 
 	('2025-06-09 18:20:15', 'A', 0),
 	('2025-06-10 08:30:00', NULL, 0),
@@ -149,6 +192,14 @@ INSERT INTO Ventas (Fecha, TipoFactura, ImporteTotal) VALUES
 	('2025-06-17 14:22:58', NULL, 0),
 	('2025-06-18 10:45:12', 'A', 0);
 GO
+
+-- Versión con procedure
+EXEC sp_AperturaVenta_Simple 'B', 0;
+
+----------------------------------------------------------------
+-- Verificación de control de errores:
+
+EXEC sp_AperturaVenta_Simple 'G', 0; -- Da error, ya que no existe tipo de factura G
 
 ----------------------------------------------------------------
 
@@ -214,3 +265,5 @@ GO
 -- Ver artículos de ventas
 SELECT * FROM ArticulosVenta;
 GO
+
+SELECT * FROM Ventas
