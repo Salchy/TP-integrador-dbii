@@ -1,3 +1,5 @@
+USE TPIGrupo29;
+
 -- Muestra todo
 SELECT * FROM VW_MostrarInformacionVentas;
 

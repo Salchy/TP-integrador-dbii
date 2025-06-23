@@ -186,12 +186,12 @@ EXEC SP_ModificarStock 31, 14;
 -- Comprobación de validaciones
 
 EXEC SP_ModificarStock 5000, 2; -- No realiza la modificación, porque el ID artículo no existe
-EXEC SP_ModificarStock 2, -20; -- No realiza la modificación, porque generaría un stock en negativo
+EXEC SP_ModificarStock 2, -1; -- No realiza la modificación, porque generaría un stock en negativo
 
 ----------------------------------------------------------------
 
 -- Visualizar stock
-SELECT * FROM Stock;
+SELECT * FROM Stock WHERE IDArticulo = 2;
 GO
 
 ----------------------------------------------------------------
@@ -288,12 +288,14 @@ EXEC SP_RegistrarVentaArticulo 11, 24, 1;
 EXEC SP_RegistrarVentaArticulo 12, 14, 2;
 GO
 
-SELECT * FROM Stock;
+EXEC SP_RegistrarVentaArticulo 12, 14, 1;
+
+SELECT * FROM Stock WHERE IDArticulo = 2;
 
 ----------------------------------------------------------------
 
 -- Ver artículos de ventas
-SELECT * FROM ArticulosVenta;
+SELECT * FROM ArticulosVenta WHERE IDVenta = 12;
 GO
 
-SELECT * FROM Ventas
+SELECT * FROM Ventas WHERE IDVenta = 12

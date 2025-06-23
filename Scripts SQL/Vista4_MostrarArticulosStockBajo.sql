@@ -6,3 +6,5 @@ CREATE VIEW VW_MostrarArticulosStockBajo AS
 	FROM Articulos
 	WHERE Eliminado = 1;
 GO
+
+select * FROM VW_MostrarArticulosStockBajo;

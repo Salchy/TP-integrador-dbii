@@ -13,3 +13,5 @@ CREATE VIEW VW_MostrarInformacionVentas AS
 	INNER JOIN Articulos AS A ON AV.IDArticulo = A.IDArticulo
 	INNER JOIN Ventas AS V ON AV.IDVenta = V.IDVenta;
 GO
+
+SELECT * FROM VW_MostrarInformacionVentas;
