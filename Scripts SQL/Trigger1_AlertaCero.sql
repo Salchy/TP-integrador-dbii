@@ -1,6 +1,6 @@
 --Advertencia y baja logica de producto al llegar a 0 stock en el mismo
 --
-CREATE TRIGGER Trigger_AlertaCantidadStockCero
+CREATE TRIGGER trg_AlertaCantidadStockCero
 ON Stock
 AFTER UPDATE
 AS
