@@ -22,6 +22,7 @@ CREATE TABLE Articulos (
 	IDMarca INT NOT NULL,
 	Nombre NVARCHAR(100) NOT NULL,
 	Precio FLOAT NOT NULL,
+	Eliminado BIT NOT NULL DEFAULT 0,
 
 	FOREIGN KEY (IDMarca) REFERENCES Marcas (IDMarca),
 )
