@@ -3,22 +3,42 @@
 USE TPIGrupo29;
 
 -- Ingreso de marcas
-INSERT INTO Marcas (Nombre) VALUES
-	('Coca-Cola'),
-	('Pepsi'),
-	('Fanta'),
-	('Sprite'),
-	('Arcor'),
-	('Bon o Bon'),
-	('Mogul'),
-	('Tita'),
-	('Rhodesia'),
-	('Cerealitas'),
-	('Cepita'),
-	('Beldent'),
-	('Marlboro'),
-	('Lays'),
-	('Rocklets');
+-- Version sin procedimiento:
+
+--INSERT INTO Marcas (Nombre) VALUES
+--	('Coca-Cola'),
+--	('Pepsi'),
+--	('Fanta'),
+--	('Sprite'),
+--	('Arcor'),
+--	('Bon o Bon'),
+--	('Mogul'),
+--	('Tita'),
+--	('Rhodesia'),
+--	('Cerealitas'),
+--	('Cepita'),
+--	('Beldent'),
+--	('Marlboro'),
+--	('Lays'),
+--	('Rocklets');
+--GO
+
+-- Version con procedimiento:
+EXEC SP_RegistrarMarca 'Coca-Cola';
+EXEC SP_RegistrarMarca 'Pepsi';
+EXEC SP_RegistrarMarca 'Fanta';
+EXEC SP_RegistrarMarca 'Sprite';
+EXEC SP_RegistrarMarca 'Arcor';
+EXEC SP_RegistrarMarca 'Bon o Bon';
+EXEC SP_RegistrarMarca 'Mogul';
+EXEC SP_RegistrarMarca 'Tita';
+EXEC SP_RegistrarMarca 'Rhodesia';
+EXEC SP_RegistrarMarca 'Cerealitas';
+EXEC SP_RegistrarMarca 'Cepita';
+EXEC SP_RegistrarMarca 'Beldent';
+EXEC SP_RegistrarMarca 'Marlboro';
+EXEC SP_RegistrarMarca 'Lays';
+EXEC SP_RegistrarMarca 'Rocklets';
 GO
 
 ------------------------------------------------------
@@ -190,7 +210,9 @@ INSERT INTO Ventas (Fecha, TipoFactura, ImporteTotal) VALUES
 	('2025-06-15 09:17:33', 'A', 0),
 	('2025-06-16 19:05:44', 'B', 0),
 	('2025-06-17 14:22:58', NULL, 0),
-	('2025-06-18 10:45:12', 'A', 0);
+	('2025-06-18 10:45:12', 'A', 0),
+	('2025-07-22 15:36:58', NULL, 0),
+	('2025-08-17 18:22:58', 'B', 0);
 GO
 
 -- Versión con procedure
@@ -258,7 +280,15 @@ EXEC SP_RegistrarVentaArticulo 9, 14, 4;
 EXEC SP_RegistrarVentaArticulo 10, 10, 4;
 EXEC SP_RegistrarVentaArticulo 10, 18, 1;
 EXEC SP_RegistrarVentaArticulo 10, 21, 2;
+
+-- Venta 11
+EXEC SP_RegistrarVentaArticulo 11, 24, 1;
+
+-- Venta 12
+EXEC SP_RegistrarVentaArticulo 12, 14, 2;
 GO
+
+SELECT * FROM Stock;
 
 ----------------------------------------------------------------
 
