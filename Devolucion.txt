@@ -1,0 +1,11 @@
+------ CORRECCIONES TO DO -----
+
+Devolución del profesor:
+
+El modelo relacional (DER) está correctamente estructurado, con las claves primarias y foráneas bien definidas. Las relaciones reflejan correctamente el dominio del negocio y se respetan los principios de normalización. A modo de mejora, podrían incorporar algunas restricciones adicionales (CHECK sobre valores permitidos) para robustecer aún más la integridad de los datos.
+
+En cuanto a los procedimientos almacenados, hay un buen trabajo de validación: controlan correctamente la existencia de registros, previenen errores por IDs inválidos o datos inconsistentes, y hacen buen uso de transacciones donde corresponde. Sin embargo, notamos que en los bloques CATCH utilizan PRINT para mostrar errores. Tengan en cuenta que PRINT no siempre es capturado por el cliente (sobre todo si se conectan desde una app externa), por lo que sería más adecuado usar RAISERROR o THROW para notificar errores de forma más confiable.
+
+Con respecto a las vistas, si bien la mayoría están bien implementadas, la vista VW_MostrarArticulosStockBajo debería replantearse: actualmente devuelve los artículos marcados como eliminados, lo cual no representa el concepto de bajo stock. Lo ideal sería contar con una columna como StockMinimo y comparar contra ella (Stock.Cantidad < StockMinimo). Además, esta vista solo devuelve el nombre del artículo, lo que puede dificultar su uso o integración; sería recomendable que devuelva más información útil como el IDArticulo, stock actual, etc.
+
+En cuanto a los triggers, hay uno bien logrado (trg_ActualizarImporteVenta) que cumple con una función importante dentro del sistema. El otro trigger (trg_AlertaCantidadStockCero) fue corregido en esta entrega, pero originalmente presentaba errores de sintaxis y concepto (estaba definido como procedimiento en lugar de trigger, usaba mal INSERTED, y tenía errores en el PRINT). Esa corrección fue clave para mejorar el trabajo final, igualmente hay que tener en cuenta lo dicho del stockminimo.
